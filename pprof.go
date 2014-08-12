@@ -20,9 +20,15 @@ func init() {
 }
 
 func (h *handler) ServeHTTP(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
-	// horrible
+
+	if !strings.HasPrefix(r.URL.Path, "/debug/pprof") {
+		next(w, r)
+		return
+	}
+
 	parts := strings.Split(r.URL.Path, "/")
-	if len(parts) < 3 || len(parts) > 4 || parts[1] != "debug" || parts[2] != "pprof" {
+
+	if len(parts) > 4 {
 		next(w, r)
 		return
 	}
