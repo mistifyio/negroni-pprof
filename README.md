@@ -2,6 +2,7 @@ negroni-pprof
 =============
 
 [![GoDoc](https://godoc.org/github.com/mistifyio/negroni-pprof?status.svg)](https://godoc.org/github.com/mistifyio/negroni-pprof)
+[![Build Status](https://drone.io/github.com/mistifyio/negroni-pprof/status.png)](https://drone.io/github.com/mistifyio/negroni-pprof/latest)
 
 pprof middleware for Negroni
 
