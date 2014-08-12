@@ -44,3 +44,51 @@ func Test_Heap(t *testing.T) {
 		t.Fail()
 	}
 }
+
+func Test_UrlTooLong(t *testing.T) {
+	w := httptest.NewRecorder()
+	handler := pprof.Pprof()
+
+	req, err := http.NewRequest("GET", "http://localhost/debug/pprof/x/y", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	handler.ServeHTTP(w, req, testHTTPContent)
+
+	if w.Body.String() != "test content" {
+		t.Fail()
+	}
+}
+
+func Test_UnknownProfile(t *testing.T) {
+	w := httptest.NewRecorder()
+	handler := pprof.Pprof()
+
+	req, err := http.NewRequest("GET", "http://localhost/debug/pprof/nothing", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	handler.ServeHTTP(w, req, testHTTPContent)
+
+	if w.Body.String() != "test content" {
+		t.Fail()
+	}
+}
+
+func Test_NonMatchingPath(t *testing.T) {
+	w := httptest.NewRecorder()
+	handler := pprof.Pprof()
+
+	req, err := http.NewRequest("GET", "http://localhost/some/other/path", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	handler.ServeHTTP(w, req, testHTTPContent)
+
+	if w.Body.String() != "test content" {
+		t.Fail()
+	}
+}
