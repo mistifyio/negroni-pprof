@@ -47,6 +47,7 @@ func (h *handler) ServeHTTP(w http.ResponseWriter, r *http.Request, next http.Ha
 	return
 }
 
+// Pprof returns a handler which will serve pprof data for the path /debug/pprof
 func Pprof() *handler {
 	return &handler{}
 }
