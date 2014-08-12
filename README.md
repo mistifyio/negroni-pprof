@@ -1,6 +1,8 @@
 negroni-pprof
 =============
 
+[![GoDoc](https://godoc.org/github.com/mistifyio/negroni-pprof?status.svg)](https://godoc.org/github.com/mistifyio/negroni-pprof)
+
 pprof middleware for Negroni
 
 # pprof
